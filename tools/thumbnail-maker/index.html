@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="preload">
+    <head>
+        <title>Canvas Thumbnail Maker</title>
+        <meta charset="utf-8" />
+        <link
+            rel="stylesheet"
+            async
+            href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
+        />
+        <link
+            rel="stylesheet"
+            async
+            href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css"
+        />
+        <link
+            rel="stylesheet"
+            async
+            href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <link rel="icon" href="https://marshall-ku.com/favicon.ico" />
+        <meta property="og:site_name" content="Canvas Thumbnail Maker" />
+        <meta
+            property="og:image"
+            content="https://marshall-ku.com/wp-content/uploads/2019/08/generated-thumbnail.png"
+        />
+        <meta property="og:title" content="Canvas Thumbnail Maker" />
+        <meta
+            property="og:description"
+            content="Make your own Thumbnail with HTML5 canvas!"
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@marshall_ku_" />
+        <meta name="twitter:title" content="Canvas Thumbnail Maker" />
+        <meta
+            property="twitter:description"
+            content="Make your own Thumbnail with HTML5 canvas!"
+        />
+        <meta
+            property="twitter:image"
+            content="https://marshall-ku.com/wp-content/uploads/2019/08/generated-thumbnail.png"
+        />
+        <meta name="by" content="Marshall K" />
+        <meta name="robots" content="index,follow" />
+    </head>
+<style id="mainCSS">
+@font-face {
+    font-family: DungGeunMo;
+    src: local(DungGeunMo), url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: BMJUA;
+    src: local(BMJUA), url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: ghanachoco;
+    src: local(ghanachoco), url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    fill: #f1f1f1
+}
+
+@keyframes materialRipple {
+    0% {
+        transform: translate(-50%, -50%) scale(1)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(var(--material-scale));
+        opacity: 0
+    }
+}
+
+*,::before,::after{box-sizing: border-box;-webkit-tap-highlight-color:transparent}
+a,body,canvas,div,html,input,li,p,textarea,ul,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline;background:0}
+body{line-height:1;-webkit-text-size-adjust:none;overflow-x:hidden;word-break:break-all}
+li,ol,ul{list-style:none}
+br{color:transparent}
+a, input, button {
+    text-decoration: none;
+    color: #bbb
+}
+a:hover {
+    color: #aaa
+}
+button, label {
+    cursor: pointer;
+}
+
+body {
+    background: #121212;
+    color: #bbb;
+    padding: 20px 10px
+}
+
+.preload * {
+    transition:0s!important
+}
+
+body, input {
+    font-family: DungGeunMo
+}
+
+[data-font="sans-serif"] {
+    font-family: sans-serif
+}
+
+[data-font="Noto Sans KR"] {
+    font-family: "Noto Sans KR"
+}
+
+[data-font="Nanum Gothic"] {
+    font-family: "Nanum Gothic"
+}
+
+[data-font="DungGeunMo"] {
+    font-family: DungGeunMo
+}
+
+[data-font="BMJUA"] {
+    font-family: BMJUA
+}
+
+[data-font="Black Han Sans"] {
+    font-family: "Black Han Sans"
+}
+
+[data-font="ghanachoco"] {
+    font-family: "ghanachoco"
+}
+
+input,
+textarea {
+    outline: 0;
+    width: 250px;
+    color: #bbb;
+}
+
+input[type=range] {
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: revert;
+    max-width: 100%
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #343434
+}
+
+input[type=range]::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    margin-top: -5px;
+    background: #ccc;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: pointer
+}
+
+input[type="color"] {
+    display: block;
+    height: calc(1rem + 20px);
+}
+
+.flex {
+    display: flex
+}
+
+.hidden {
+    display: none
+}
+
+.center {
+    text-align: center;
+    align-items: center;
+    justify-content: center
+}
+
+.column {
+    flex-direction: column
+}
+
+.button {
+    display: inline-flex;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    padding: 10px 15px;
+    box-shadow: #333 0 0 0 2px inset;
+    transition: .3s cubic-bezier(.39, .5, .15, 1)
+}
+
+.button:hover {
+    box-shadow: #666 0 0 0 40px inset;
+    color: #f1f1f1
+}
+
+.icon-upload, .icon-download {
+    margin-right: 5px
+}
+
+.material-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.material-ripple .animate {
+    width: 2px;
+    height: 2px;
+    position: absolute;
+    border-radius: 50%;
+    background: #bdc3c7;
+    pointer-events: none;
+    animation: materialRipple 0.5s linear
+}
+
+.inputWrap {
+    display: flex;
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.inputWrap.alt {
+    position: relative;
+    overflow: visible
+}
+
+.inputWrap>span, .inputWrap>input:not([type="range"]):not([type="color"]) {
+    display: inline-block;
+    padding: 10px
+}
+
+.inputWrap>span {
+    flex-shrink: 0;
+    box-sizing: content-box;
+    border-right: 1px solid #333
+}
+
+.inputWrap>div {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    padding: 10px;
+}
+
+.margin {
+    margin-bottom: 20px
+}
+
+.transWrap>div {
+    margin-bottom: 10px
+}
+
+#resize {
+    flex-wrap: wrap
+}
+
+#resize .inputWrap {
+    margin: 0 5px 10px
+}
+
+#preview {
+    margin: 30px 0;
+    max-width: 100%;
+    max-height: 80vh
+}
+
+#textWrap {
+    position: relative;
+    margin-bottom: 30px
+}
+
+#text {
+    width: 90vw;
+    max-width: 300px;
+    padding: 10px 20px;
+    line-height: 1.5;
+    text-align: center;
+    overflow: hidden;
+    resize: none;
+}
+
+#text::placeholder {
+    transition: .5s
+}
+
+#text:focus::placeholder {
+    opacity: 0
+}
+
+#textWrap > .line {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    transform: scale(0);
+    opacity: 0;
+    transition: .5s
+}
+
+#textWrap > .line.top {
+    bottom: auto;
+    top: 0;
+}
+
+#text:focus ~ .line, #text:hover ~ .line {
+    transform: scaleX(1);
+    opacity: 1
+}
+
+#download {
+    background: 0;
+    border: 0;
+    margin-top: 30px;
+}
+
+.dropdown_btn {
+    cursor: pointer;
+    user-select: none
+}
+
+.dropdown_btn .icon-angle-down {
+    position: absolute;
+    right: 10px;
+    transition: transform .5s
+}
+
+.dropdown_btn.activated .icon-angle-down {
+    transform: rotate(180deg)
+}
+
+.dropdown_content {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: .5s
+}
+
+.dropdown_content.dropdown_reveal {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+#fontList {
+    width: 250px;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #121212;
+    border: 1px solid #333;
+    border-radius: 10px
+}
+
+#fontList li {
+    padding: 10px;
+    cursor: pointer
+}</style>
+
+    <body>
+        <div id="resize" class="flex center">
+            <div class="inputWrap">
+                <span>Width</span>
+                <input type="number" id="width" value="700" />
+            </div>
+            <div class="inputWrap">
+                <span>Height</span>
+                <input type="number" id="height" value="700" />
+            </div>
+        </div>
+        <div class="flex center">
+            <canvas id="preview" width="700" height="700"></canvas>
+        </div>
+        <div class="flex center column">
+            <div id="textWrap">
+                <textarea
+                    id="text"
+                    placeholder="Type Here!"
+                    aria-label="Type Here!"
+                    rows="2"
+                ></textarea>
+                <div class="line top"></div>
+                <div class="line"></div>
+            </div>
+            <div class="inputWrap margin alt">
+                <span>Font</span>
+                <div id="font" class="dropdown_btn" data-dropdown="fontList">
+                    Sans-Serif
+                    <svg class="icon-angle-down" viewBox="0 0 288 448">
+                        <path
+                            d="M268.75 184c0 2-1 4.25-2.5 5.75l-116.5 116.5c-1.5 1.5-3.75 2.5-5.75 2.5s-4.25-1-5.75-2.5l-116.5-116.5c-1.5-1.5-2.5-3.75-2.5-5.75s1-4.25 2.5-5.75l12.5-12.5c1.5-1.5 3.5-2.5 5.75-2.5 2 0 4.25 1 5.75 2.5l98.25 98.25 98.25-98.25c1.5-1.5 3.75-2.5 5.75-2.5s4.25 1 5.75 2.5l12.5 12.5c1.5 1.5 2.5 3.75 2.5 5.75z"
+                        />
+                    </svg>
+                </div>
+                <ul id="fontList" class="dropdown_content">
+                    <li class="material-ripple" data-font="sans-serif">
+                        Sans-serif
+                    </li>
+                    <li class="material-ripple" data-font="Noto Sans KR">
+                        Noto Sans KR
+                    </li>
+                    <li class="material-ripple" data-font="Nanum Gothic">
+                        Nanum Gothic
+                    </li>
+                    <li class="material-ripple" data-font="DungGeunMo">
+                        DungGeunMo
+                    </li>
+                    <li class="material-ripple" data-font="BMJUA">BMJUA</li>
+                    <li class="material-ripple" data-font="Black Han Sans">
+                        Black Han Sans
+                    </li>
+                    <li class="material-ripple" data-font="ghanachoco">
+                        Ghana Choco
+                    </li>
+                </ul>
+            </div>
+            <div class="inputWrap margin">
+                <span>Font Size</span>
+                <input type="number" id="fontSize" value="64" />
+            </div>
+            <div class="inputWrap margin">
+                <span>Font Color</span>
+                <input
+                    type="color"
+                    id="textColor"
+                    autocomplete="off"
+                    value="#ffffff"
+                />
+            </div>
+            <div class="inputWrap margin">
+                <span>Background Color</span>
+                <input
+                    type="color"
+                    id="bgColor"
+                    autocomplete="off"
+                    value="#121212"
+                />
+            </div>
+            <input type="file" id="bgImage" class="hidden" />
+            <label for="bgImage" class="button margin center">
+                <svg viewBox="0 0 416 448" class="icon-upload">
+                    <path
+                        d="M320 368c0-8.75-7.25-16-16-16s-16 7.25-16 16 7.25 16 16 16 16-7.25 16-16zM384 368c0-8.75-7.25-16-16-16s-16 7.25-16 16 7.25 16 16 16 16-7.25 16-16zM416 312v80c0 13.25-10.75 24-24 24h-368c-13.25 0-24-10.75-24-24v-80c0-13.25 10.75-24 24-24h106.75c6.75 18.5 24.5 32 45.25 32h64c20.75 0 38.5-13.5 45.25-32h106.75c13.25 0 24 10.75 24 24zM334.75 150c-2.5 6-8.25 10-14.75 10h-64v112c0 8.75-7.25 16-16 16h-64c-8.75 0-16-7.25-16-16v-112h-64c-6.5 0-12.25-4-14.75-10-2.5-5.75-1.25-12.75 3.5-17.25l112-112c3-3.25 7.25-4.75 11.25-4.75s8.25 1.5 11.25 4.75l112 112c4.75 4.5 6 11.5 3.5 17.25z"
+                    />
+                </svg>
+                Upload Background Image
+            </label>
+            <div class="flex center column margin transWrap hidden">
+                <div>Background Image Transparency</div>
+                <input type="range" id="transparency" value="0" />
+            </div>
+            <a id="download" download="thumbnail" class="button center">
+                <svg viewBox="0 0 416 448" class="icon-download">
+                    <path
+                        d="M320 336c0-8.75-7.25-16-16-16s-16 7.25-16 16 7.25 16 16 16 16-7.25 16-16zM384 336c0-8.75-7.25-16-16-16s-16 7.25-16 16 7.25 16 16 16 16-7.25 16-16zM416 280v80c0 13.25-10.75 24-24 24h-368c-13.25 0-24-10.75-24-24v-80c0-13.25 10.75-24 24-24h116.25l33.75 34c9.25 9 21.25 14 34 14s24.75-5 34-14l34-34h116c13.25 0 24 10.75 24 24zM334.75 137.75c2.5 6 1.25 13-3.5 17.5l-112 112c-3 3.25-7.25 4.75-11.25 4.75s-8.25-1.5-11.25-4.75l-112-112c-4.75-4.5-6-11.5-3.5-17.5 2.5-5.75 8.25-9.75 14.75-9.75h64v-112c0-8.75 7.25-16 16-16h64c8.75 0 16 7.25 16 16v112h64c6.5 0 12.25 4 14.75 9.75z"
+                    />
+                </svg>
+                Download Image
+            </a>
+        </div>
+        <script defer src="main.js"></script>
+    </body>
+</html>
