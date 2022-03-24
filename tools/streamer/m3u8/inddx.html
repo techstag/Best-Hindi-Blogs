@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><title>Video Stream Testing Tool - TechStag Tools</title><style>body{margin:10px;}</style><meta charset="utf-8"/><meta content="IE=Edge" http-equiv="X-UA-Compatible"/><meta content="width=device-width, initial-scale=1" name="viewport"/></head><body onload="myFunction()"><video controls="" height="100%" id="videolink" preload="auto" src="" width="100%"></video><br/><h1>How to Use This Tool</h1><p>https://gotos.in/p/streamer/?c=YourVideoLink</p><form action=""><input id="inputlink" name="c" placeholder="Check Your Url" type="url"/><input type="submit" value="Test Url"/></form><p>Powered by <a href="https://tools.techstag.in">TechStag Tools</a></p><script>
+  function myFunction() {
+  var url_string = window.location;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("c");
+  document.getElementById("videolink").src = c;
+  document.getElementById("inputlink").value = c;
+}
+console.log(c);
+  
+</script></body></html>
