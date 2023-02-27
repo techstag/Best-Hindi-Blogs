@@ -14,17 +14,17 @@ All contributions are welcome and greatly appreciated.
 
 ## Technology
 
-- [Hindi Tech Tricks](https://www.hinditechtricks.in/) - A technology blog that covers topics related to smartphones, computers, internet, and more.
-- [Blogging Try](https://www.bloggingtry.com/) - A blog that provides tips and tricks for bloggers and online content creators.
+- [TechStag](https://hindi.techstag.in/) - A technology blog that covers topics related to smartphones, computers, internet, and more.
+- [Hindi Tech DR](https://www.hinditechdr.com/) - A blog that provides tips and tricks for bloggers and online content creators.
 
 ## Literature
 
-- [Kavita Kosh](https://www.kavitakosh.org/) - A platform for Hindi poets to publish their work and connect with other poets.
-- [Hindi Kahaniya](https://www.hindikahaniya.in/) - A blog that publishes short stories and poems in Hindi.
+- [Hindi Kavita](https://www.hindi-kavita.com/) - A platform for Hindi poets to publish their work and connect with other poets.
+- [Hindwi](https://www.hindwi.org/) - A blog that publishes short stories and poems in Hindi.
 
 ## Lifestyle
 
-- [Zindagi ki Mehek](https://www.zindagikimehek.com/) - A lifestyle blog that covers topics such as health, beauty, fashion, and relationships.
+- [Boldsky Hindi](https://hindi.boldsky.com/) - A lifestyle blog that covers topics such as health, beauty, fashion, and relationships.
 - [The Indian Beauty Blog](https://www.theindianbeautyblog.com/) - A blog that provides reviews and tips for beauty products and makeup.
 
 ## Travel
